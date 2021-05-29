@@ -13,9 +13,7 @@ function boom(x, y){
   }
 }
 
-let dynamite = extend(GenericCrafter, "dynamite", {
-  explosionDelay: 5.5
-});
+let dynamite = extend(GenericCrafter, "dynamite", {});
 
 dynamite.buildType = () => extend(GenericCrafter.GenericCrafterBuild, dynamite, {
   onDestroyed(){
@@ -26,6 +24,6 @@ dynamite.buildType = () => extend(GenericCrafter.GenericCrafterBuild, dynamite, 
     this.super$placed();
     Timer.schedule(() => {
       if(this.health >= this.maxHealth - 5) boom(this.x, this.y);
-    }, this.explosionDelay);
+    }, 5.5);
   }
 });

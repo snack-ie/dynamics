@@ -18,17 +18,15 @@ let dynamite = extend(GenericCrafter, "dynamite", {});
 dynamite.buildType = () => extend(GenericCrafter.GenericCrafterBuild, dynamite, {
   onDestroyed(){
     this.super$onDestroyed();
-    boom();
+    boom(this.x, this.y);
   }, 
   placed(){
     this.super$placed();
     if (this.health >= (this.maxHealth - 5)){
       Timer.schedule(() => {
-        if (this.health >= (this.maxHealth - 5)){
-          boom(this.x, this.y);
-          };
-        }, 5);
-      } else {
-        boom(this.x, this.y);
-      };
+        if (this.health >= (this.maxHealth - 5)) boom(this.x, this.y);
+      }, 5)
+    } else {
+      boom(this.x, this.y);
+    }
 }});

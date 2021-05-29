@@ -1,5 +1,5 @@
 function boom(x, y){
-  Fx.impactExplosion.at(x, y);
+  Fx.impactShockwave.at(x, y);
   Fx.massiveExplosion.at(x, y);
   Effect.shake(10, 15, x, y);
   Damage.damage(x, y, 20 * Vars.tilesize, 1000);

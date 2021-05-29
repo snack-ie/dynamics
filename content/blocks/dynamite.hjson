@@ -1,0 +1,15 @@
+localizedName: Dynamite
+description: Ass.
+health: 400
+solid: true
+update: true
+hasItems: false
+hasPower: false
+hasLiquids: false
+
+requirements: [
+  copper/200
+]
+
+research: core-shard
+category: effect

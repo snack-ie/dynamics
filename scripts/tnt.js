@@ -8,12 +8,14 @@ function boom(x, y){
     let randY = Mathf.range(15);
     let time = Math.random(0.4);
     Timer.schedule(() => {
-      Fx.shockWave.at(x + rand, y + rand);
+      Fx.explosion.at(x + randX, y + randY);
     }, time)
   }
 }
 
-let dynamite = extend(GenericCrafter, "dynamite", {});
+let dynamite = extend(GenericCrafter, "dynamite", {
+  explosionDelay: 5.5
+});
 
 dynamite.buildType = () => extend(GenericCrafter.GenericCrafterBuild, dynamite, {
   onDestroyed(){
@@ -22,11 +24,8 @@ dynamite.buildType = () => extend(GenericCrafter.GenericCrafterBuild, dynamite, 
   }, 
   placed(){
     this.super$placed();
-    if (this.health >= (this.maxHealth - 5)){
-      Timer.schedule(() => {
-        if (this.health >= (this.maxHealth - 5)) boom(this.x, this.y);
-      }, 5)
-    } else {
-      boom(this.x, this.y);
-    }
-}});
+    Timer.schedule(() => {
+      if(this.health >= this.maxHealth - 5) boom(this.x, this.y);
+    }, this.explosionDelay);
+  }
+});
